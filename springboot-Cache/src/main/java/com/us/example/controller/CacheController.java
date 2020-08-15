@@ -2,7 +2,6 @@ package com.us.example.controller;
 import com.us.example.bean.Person;
 import com.us.example.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +34,7 @@ public class CacheController {
 
     //http://localhost:8080/evit?id=1
     @RequestMapping("/evit")
-    public String  evit(Long id){
+    public String  evit(Integer id){
         demoService.remove(id);
         return "ok";
 

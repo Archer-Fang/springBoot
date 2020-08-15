@@ -27,22 +27,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserService()).passwordEncoder(new PasswordEncoder(){
-
-            @Override
-            public String encode(CharSequence rawPassword) {
-                return MD5Util.encode((String)rawPassword);
-            }
-
-            @Override
-            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                return encodedPassword.equals(MD5Util.encode((String)rawPassword));
-            }}); //user Details Service验证
+//        auth.userDetailsService(customUserService()).passwordEncoder(new PasswordEncoder(){
+//
+//            @Override
+//            public String encode(CharSequence rawPassword) {
+//                return (String) rawPassword;
+//            }
+//
+//            @Override
+//            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+//                return encodedPassword.equals((String)rawPassword);
+//            }}); //user Details Service验证
+        auth.userDetailsService(customUserService());//user Details Service验证
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/css/**").permitAll()
                 .anyRequest().authenticated() //任何请求,登录后可以访问
                 .and()
                 .formLogin()

@@ -17,6 +17,7 @@
     <textarea rows="4" cols="60" name="text"></textarea>
     <input type="submit"/>
 </form>
+<div id="output"></div>
 
 <script th:inline="javascript">
     $('#wiselyForm').submit(function(e){
@@ -47,6 +48,5 @@
     $('#stop').click(function() {sock.close()});
 </script>
 
-<div id="output"></div>
 </body>
 </html>

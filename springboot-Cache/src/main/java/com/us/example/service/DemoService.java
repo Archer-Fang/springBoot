@@ -8,7 +8,7 @@ import com.us.example.bean.Person;
 public  interface DemoService {
     public Person save(Person person);
 
-    public void remove(Long id);
+    public void remove(Integer id);
 
     public Person findOne(Person person);
 

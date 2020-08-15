@@ -42,6 +42,7 @@ public class CustomUserService implements UserDetailsService { //自定义UserDe
             }
             return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
         } else {
+            System.out.println("admin: do not exist!");
             throw new UsernameNotFoundException("admin: " + username + " do not exist!");
         }
     }

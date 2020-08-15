@@ -30,7 +30,7 @@ public class DemoServiceImpl implements DemoService {
     @Override
     //@CacheEvict 从缓存people中删除key为id 的数据
     @CacheEvict(value = "people")
-    public void remove(Long id) {
+    public void remove(Integer id) {
         System.out.println("删除了id、key为"+id+"的数据缓存");
         //这里不做实际删除操作
     }

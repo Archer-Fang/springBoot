@@ -59,18 +59,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(urlUserService).passwordEncoder(new PasswordEncoder() {
-
-            @Override
-            public String encode(CharSequence rawPassword) {
-                return MD5Util.encode((String) rawPassword);
-            }
-
-            @Override
-            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                return encodedPassword.equals(MD5Util.encode((String) rawPassword));
-            }
-        });
+//        auth.userDetailsService(urlUserService).passwordEncoder(new PasswordEncoder() {
+//
+//            @Override
+//            public String encode(CharSequence rawPassword) {
+//                return MD5Util.encode((String) rawPassword);
+//            }
+//
+//            @Override
+//            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+//                return encodedPassword.equals(MD5Util.encode((String) rawPassword));
+//            }
+//        });
+        auth.userDetailsService(urlUserService);
     }
 
     @Bean
