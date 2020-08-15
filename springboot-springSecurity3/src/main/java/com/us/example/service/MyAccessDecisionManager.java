@@ -28,7 +28,18 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         String url, method;
         AntPathRequestMatcher matcher;
         for (GrantedAuthority ga : authentication.getAuthorities()) {
-            if (ga instanceof MyGrantedAuthority) {
+            if ("anonymousUser".equals(authentication.getPrincipal())
+                    || matchers("/images/**", request)
+                    || matchers("/js/**", request)
+                    || matchers("/css/**", request)
+                    || matchers("/fonts/**", request)
+                    || matchers("/", request)
+                    || matchers("/index.html", request)
+                    || matchers("/favicon.ico", request)
+                    || matchers("/login", request)) {
+                return;
+            }
+            else {
                 MyGrantedAuthority urlGrantedAuthority = (MyGrantedAuthority) ga;
                 url = urlGrantedAuthority.getPermissionUrl();
                 method = urlGrantedAuthority.getMethod();
@@ -39,17 +50,18 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
                         return;
                     }
                 }
-            } else if (ga.getAuthority().equals("ROLE_ANONYMOUS")) {//未登录只允许访问 login 页面
-                matcher = new AntPathRequestMatcher("/login");
-                if (matcher.matches(request)) {
-                    return;
-                }
             }
         }
         throw new AccessDeniedException("no right");
     }
 
-
+    private boolean matchers(String url, HttpServletRequest request) {
+        AntPathRequestMatcher matcher = new AntPathRequestMatcher(url);
+        if (matcher.matches(request)) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean supports(ConfigAttribute attribute) {
