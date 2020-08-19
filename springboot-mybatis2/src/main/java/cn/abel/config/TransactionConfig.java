@@ -1,25 +1,25 @@
-package com.us.example.config;
-
-import javax.sql.DataSource;
+package cn.abel.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
-@Configuration
-@ComponentScan
-public class TransactionConfig implements TransactionManagementConfigurer{
-    @Autowired
-    private DataSource dataSource;
+import javax.sql.DataSource;
 
-    @Bean(name = "transactionManager")
-    @Override
+@Configuration
+public class TransactionConfig implements TransactionManagementConfigurer{
+
+	@Autowired
+	private DataSource dataSource;
+
+	@Override
+	@Bean
     public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return new DataSourceTransactionManager(dataSource);
+		return new DataSourceTransactionManager(dataSource);
     }
+	
 
 }
