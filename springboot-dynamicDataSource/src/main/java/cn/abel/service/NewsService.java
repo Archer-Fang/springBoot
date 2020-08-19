@@ -18,29 +18,29 @@ public class NewsService {
     private NewsDao newsDao;
 
     public List<News> getByMap(Map<String, Object> map) {
-        DynamicDataSourceContextHolder.resetDatabaseType();
+        DynamicDataSourceContextHolder.setDatabaseType(DatabaseTypeEnum.USER);
         return newsDao.getByMap(map);
     }
 
     public News getById(Integer id) {
-        DynamicDataSourceContextHolder.resetDatabaseType();
+        DynamicDataSourceContextHolder.setDatabaseType(DatabaseTypeEnum.USER);
         return newsDao.getById(id);
     }
 
     public News create(News news) {
-        DynamicDataSourceContextHolder.resetDatabaseType();
+        DynamicDataSourceContextHolder.setDatabaseType(DatabaseTypeEnum.USER);
         newsDao.create(news);
         return news;
     }
 
     public News update(News news) {
-        DynamicDataSourceContextHolder.resetDatabaseType();
+        DynamicDataSourceContextHolder.setDatabaseType(DatabaseTypeEnum.USER);
         newsDao.update(news);
         return news;
     }
 
     public int delete(Integer id) {
-        DynamicDataSourceContextHolder.resetDatabaseType();
+        DynamicDataSourceContextHolder.setDatabaseType(DatabaseTypeEnum.USER);
         return newsDao.delete(id);
     }
 

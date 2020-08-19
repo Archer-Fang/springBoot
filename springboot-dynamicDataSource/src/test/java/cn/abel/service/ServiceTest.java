@@ -23,7 +23,7 @@ public class ServiceTest extends BaseTest {
     public void dynamicDataSourceTest() throws Exception {
         List<News> newsList = newsService.getByMap(null);
         List<User> userList = userService.getByMap(null);
-        System.out.println("newsList----" + newsList.size() + "--userList---" + userList.size());
+        System.out.println("newsList----" + newsList.get(0).getContent() + "--userList---" + userList.get(0).getName());
 
     }
 }
