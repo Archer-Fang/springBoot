@@ -1,61 +1,27 @@
 package com.us.bean;
 
+import lombok.Data;
 
-public class Permission {
-    private Integer id;
-    private String name;
-    private String permissionUrl;
-    private String method;
-    private String description;
+import javax.persistence.*;
+import java.io.Serializable;
 
-    public Integer getId() {
-        return id;
-    }
+@Data
+@Entity
+@Table(name = "permission")
+public class Permission  implements Serializable {
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 
-    public String getName() {
-        return name;
-    }
+	private String name;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	private String description;
 
-    public String getPermissionUrl() {
-        return permissionUrl;
-    }
+	private String url;
 
-    public void setPermissionUrl(String permissionUrl) {
-        this.permissionUrl = permissionUrl;
-    }
+	private Integer pid;
 
-    public String getMethod() {
-        return method;
-    }
+	private String method;
 
-    public void setMethod(String method) {
-        this.method = method;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Permission{" +
-                "id=" + id +
-                ", name=" + name +
-                ", permissionUrl=" + permissionUrl +
-                ", method=" + method +
-                ", description=" + description +
-                '}';
-    }
 }

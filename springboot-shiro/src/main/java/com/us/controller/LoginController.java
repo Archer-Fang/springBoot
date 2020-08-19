@@ -4,6 +4,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +47,12 @@ public class LoginController {
     @RequestMapping("/")
     @ResponseBody
     public String index() {
+
+        Session session=SecurityUtils.getSubject().getSession();
+        System.out.println("1");
+        if(session.getAttribute("user") != null){
+            return session.getAttribute("user").toString();
+        }
         return "no permission";
     }
 }

@@ -37,8 +37,9 @@ public class UserServiceImpl implements UserService {
         return userJpaDao.save(user);
     }
 
+
     @Override
-    public int removeUser(Long id) {
+    public int removeUser(Integer id) {
        try {
            userJpaDao.delete(id);
        }catch (Exception e) {
@@ -52,8 +53,9 @@ public class UserServiceImpl implements UserService {
         return userJpaDao.save(user);
     }
 
+
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(Integer id) {
         return  userJpaDao.findOne(id);
     }
 

@@ -4,7 +4,7 @@
     <resultMap id="permissionMap" type="com.us.bean.Permission">
 		<id property="id" column="id"/>
 		<result property="name" column="name"/>
-		<result property="permissionUrl" column="permission_url"/>
+		<result property="url" column="url"/>
 		<result property="method" column="method"/>
 		<result property="description" column="description"/>
 
@@ -18,8 +18,8 @@
 			<if test="name != null and name != ''">
 				and name = #{name}
 			</if>
-			<if test="permissionUrl != null and permissionUrl != ''">
-				and permission_url = #{permissionUrl}
+			<if test="url != null and url != ''">
+				and url = #{url}
 			</if>
 			<if test="method != null and method != ''">
 				and method = #{method}
@@ -61,13 +61,13 @@
 		INSERT INTO permission(
 			id,
 			name,
-			permission_url,
+			url,
 		    method,
 			description
 		)VALUES(
 			#{id},
 			#{name},
-			#{permissionUrl},
+			#{url},
 		    #{method},
 			#{description}
 		)
@@ -76,7 +76,7 @@
     <update id="update" parameterType="com.us.bean.Permission">
 		UPDATE permission SET
 			name = #{name},
-			permission_url = #{permissionUrl},
+			url = #{url},
 			method = #{method},
 			description = #{description}
 		WHERE id = #{id}

@@ -13,22 +13,22 @@ import java.util.List;
  *
  * @author abel
  */
-public interface UserJpaDao extends JpaRepository<User, Long> {
+public interface UserJpaDao extends JpaRepository<User, Integer> {
 
     /**
      * Find by name.
      *
-     * @param name the name
+     * @param username the name
      * @return the user
      */
-    User findByName(String name);
+//    User findByName(String name);
 
-    User getOne(Long id);
+//    User getOne(Long id);
 
     List<User> findByUsernameContaining(String username);
 
     User getByUsernameIs(String username);
 
-    @Query("select s from User s where name like CONCAT('%',:name,'%')")
-    List<User> findByNameLike(@Param("name") String name);
+    @Query("select s from User s where s.username like CONCAT('%',:username,'%')")
+    List<User> findByNameLike(@Param("username") String username);
 }

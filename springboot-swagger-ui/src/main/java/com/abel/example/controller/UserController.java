@@ -48,7 +48,7 @@ public class UserController {
     @ResponseBody
     @ApiOperation(value = "通过id获取用户信息", notes="返回用户信息")
     public ResponseEntity<Object> getUserById(@PathVariable Integer id) {
-        return new ResponseEntity<>(userService.getUserById(Long.valueOf(id)), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
 
@@ -126,6 +126,6 @@ public class UserController {
     @ResponseBody
     @ApiOperation(value = "通过id删除用户信息", notes="返回删除状态1 成功 0 失败")
     public ResponseEntity<Object> deleteUser(@PathVariable Integer id) {
-        return new ResponseEntity<>(userService.removeUser(id.longValue()), HttpStatus.OK);
+        return new ResponseEntity<>(userService.removeUser(id), HttpStatus.OK);
     }
 }

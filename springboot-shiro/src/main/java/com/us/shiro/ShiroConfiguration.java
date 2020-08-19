@@ -90,6 +90,10 @@ public class ShiroConfiguration {
     public ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
+        shiroFilterFactoryBean.setLoginUrl("/login");//配置登录路径（登录页的路径和表单提交的路径必须是同一个，页面的GET方式，表单的POST方式）
+        shiroFilterFactoryBean.setSuccessUrl("/");//配置登录成功页路径
+        shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized");//配置没有权限跳转的页面
+
 
         Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
         LogoutFilter logoutFilter = new LogoutFilter();
@@ -99,7 +103,7 @@ public class ShiroConfiguration {
 
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
         filterChainDefinitionManager.put("/logout", "logout");
-        filterChainDefinitionManager.put("/user/**", "authc,roles[ROLE_USER]");
+        filterChainDefinitionManager.put("/users/**", "authc,roles[ROLE_USER]");
         filterChainDefinitionManager.put("/events/**", "authc,roles[ROLE_ADMIN]");
 //        filterChainDefinitionManager.put("/user/edit/**", "authc,perms[user:edit]");// 这里为了测试，固定写死的值，也可以从数据库或其他配置中读取
         filterChainDefinitionManager.put("/**", "anon");

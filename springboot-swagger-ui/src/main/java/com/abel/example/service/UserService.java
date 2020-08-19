@@ -31,7 +31,7 @@ public interface UserService {
 	 * @param id
 	 * @return
 	 */
-	int removeUser(Long id);
+	int removeUser(Integer id);
 
 	/**
 	 * 更新学生信息
@@ -45,7 +45,7 @@ public interface UserService {
 	 * @param id
 	 * @return
 	 */
-	User getUserById(Long id);
+	User getUserById(Integer id);
 
 	/**
 	 * 获取学生列表
